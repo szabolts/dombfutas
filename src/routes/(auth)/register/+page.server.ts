@@ -22,6 +22,8 @@ export const actions = {
 		const data = await request.formData()
 		const email = data.get('email')
 		const password = data.get('password')
+
+		console.log({email, password})
         // const name = data.get('name')
         // const birthDate = data.get('birthDate')
         // const gender = data.get('gender')
@@ -42,14 +44,17 @@ export const actions = {
 			return fail(400, { invalid: true })
 		}
 
+		//vane ilyen user, email alapjan
 		const user = await db.user.findUnique({
 			where: { email },
 		})
 
+		// hibat basz ha van
 		if (user) {
 			return fail(400, { user: true })
 		}
 
+		// ez a query, felolti a dbt
 		await db.user.create({
 			data: {
 				email,

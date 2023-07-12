@@ -2,7 +2,7 @@
     import "../app.postcss";
     import { enhance } from '$app/forms'
     import { page } from '$app/stores'
-	import { DarkMode } from 'flowbite-svelte';
+	import { DarkMode, Button } from 'flowbite-svelte';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Avatar, Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte'
 	import { Footer, FooterLinkGroup, FooterLink, ImagePlaceholder, TextPlaceholder, Skeleton, FooterCopyright } from 'flowbite-svelte'
 	let btnClass = 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm px-1 py-1';
@@ -39,9 +39,18 @@
 
 	<NavHamburger on:click={toggle} />
 	<NavUl  {hidden}>
+		{#if !$page.data.user}
 	  <NavLi href="/" active={true}>Home</NavLi>
 	  <NavLi href="/login">Login</NavLi>
 	  <NavLi href="/register">Register</NavLi>
+		{/if}
+		
+		{#if $page.data.user}
+		<NavLi href="/" active={true}>Home</NavLi>
+		<form class="logout" action="/logout" method="POST" use:enhance>
+			<Button type="submit">Log out</Button>
+		</form>
+		{/if}
 	</NavUl>
 		
   </Navbar>

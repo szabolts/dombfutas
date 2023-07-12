@@ -22,21 +22,21 @@ export const actions = {
 		const data = await request.formData()
 		const email = data.get('email')
 		const password = data.get('password')
-        const name = data.get('name')
-        const birthDate = data.get('birthDate')
-        const gender = data.get('gender')
+        // const name = data.get('name')
+        // const birthDate = data.get('birthDate')
+        // const gender = data.get('gender')
 
 		if (
 			typeof email !== 'string' ||
 			typeof password !== 'string' ||
-            typeof name !== 'string' ||
-            typeof gender !== 'string' ||
+            // typeof name !== 'string' ||
+            // typeof gender !== 'string' ||
 
 			!email ||
-			!password ||
-            !name ||
-            !birthDate ||
-            !gender
+			!password 
+            // !name ||
+            // !birthDate ||
+            // !gender
 
 		) {
 			return fail(400, { invalid: true })
@@ -54,9 +54,9 @@ export const actions = {
 			data: {
 				email,
 				passwordHash: await bcrypt.hash(password, 10),
-                name,
-                birthDate,
-                gender,
+                // name,
+                // birthDate,
+                // gender,
 				userAuthToken: crypto.randomUUID(),
 				role: { connect: { name: Roles.USER } },
 			},

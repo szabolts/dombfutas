@@ -6,9 +6,9 @@
 	export let form;
 </script>
 
-<div class="transition ease-in-out delay-300 flex justify-center items-center h-screen">
-	<Card class="w-screen">
-		<form class="flex flex-col space-y-6 " action="?/login" method="POST">
+<div transition:fade class="transition ease-in-out delay-300 flex justify-center items-center h-screen">
+	<Card  class="w-screen">
+		<form class="flex flex-col space-y-6 " action="?/login" method="POST" use:enhance>
 			<h3 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
 	
 			<Label class="space-y-2" for="email">

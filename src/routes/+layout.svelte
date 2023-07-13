@@ -47,6 +47,7 @@
 		
 		{#if $page.data.user}
 		<NavLi href="/" active={true}>Home</NavLi>
+		<NavLi href="/admin" active={true}>Admin</NavLi>
 		<form class="logout" action="/logout" method="POST" use:enhance>
 			<Button type="submit">Log out</Button>
 		</form>
